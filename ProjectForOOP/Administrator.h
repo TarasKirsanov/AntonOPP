@@ -1,5 +1,5 @@
 #pragma once
-#include "Member.h"
+#include "HostelResident.h"
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -18,7 +18,7 @@ public:
 	void open_file(string fileName);
 	void remove_file(string fileName);
 	void view_members();
-	void append_member(HostelResidents member);
+	void append_member(HostelResident member);
 	void delete_member(int index);
 	void edit_member(int index);
 	void AppendUser(User member);
@@ -27,7 +27,7 @@ public:
 	void view_users();
 private:
 	
-	vector<HostelResidents> members;
+	vector<HostelResident> members;
 	vector<User> users;
 	string memberFileName;
 	string userFileName;

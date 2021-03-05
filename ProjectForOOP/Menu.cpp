@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
-#include "Member.h"
+#include "HostelResident.h"
 #include "FileWorker.h"
 #include "Administrator.h"
 using namespace std;
@@ -17,7 +17,7 @@ void Menu::RunMemberMenu()
 	getline(cin, userFileName);
 	memberFileName = memberFileName.empty() ? "members.txt" : memberFileName;
 	
-	vector<HostelResidents> members = FileWorker::get_members_from_file(memberFileName);
+	vector<HostelResident> members = FileWorker::get_members_from_file(memberFileName);
 	bool exitMenu = true;
 	while (exitMenu)
 	{
@@ -28,13 +28,13 @@ void Menu::RunMemberMenu()
 		cout << "4. Первое индивидуальное задание" << endl;
 		cout << "5. Второе индивидуальное задание" << endl;
 		cout << "6. Выход" << endl;
-		int choose = GetNumber();
+		int choose = HelpFunctions::GetNumber();
 		system("cls");
 		switch (choose)
 		{
 		case 1:
 		{
-			HostelResidents::printAsTable(members);
+			HostelResident::printAsTable(members);
 		}
 		break;
 		case 2:
@@ -42,7 +42,7 @@ void Menu::RunMemberMenu()
 			cout << "Введите имя для поиска: " << endl;
 			string name;
 			getline(cin, name);
-			HostelResidents::FindByFIO(members, name);
+			HostelResident::FindByFIO(members, name);
 		}
 		break;
 		case 3:
@@ -56,24 +56,24 @@ void Menu::RunMemberMenu()
 				cout << "2. По месту" << endl;
 				cout << "3. По дате рождения" << endl;
 				cout << "4. Назад" << endl;
-				int SubChoose = GetNumber();
+				int SubChoose = HelpFunctions::GetNumber();
 				system("cls");
-				switch (SubChoose)
+				/*switch (SubChoose)
 				{
 				case 1:
 					cout << "Отсоритрованно по имени;" << endl;
-					HostelResidents::SortByFunc(members, [](HostelResidents memberFirst, HostelResidents memberSecond) {return memberFirst.getFullName() < memberSecond.getFullName(); });
-					HostelResidents::printAsTable(members);
+					HostelResident::SortByFunc(members, [](HostelResident memberFirst, HostelResident memberSecond) {return memberFirst.getFullName() < memberSecond.getFullName(); });
+					HostelResident::printAsTable(members);
 					break;
 				case 2:
 					cout << "Отсоритрованно по месту;" << endl;
-					HostelResidents::SortByFunc(members, [](HostelResidents memberFirst, HostelResidents memberSecond) {return memberFirst.GetPlaceByResults() < memberSecond.GetPlaceByResults(); });
-					HostelResidents::printAsTable(members);
+					HostelResident::SortByFunc(members, [](HostelResident memberFirst, HostelResident memberSecond) {return memberFirst.GetPlaceByResults() < memberSecond.GetPlaceByResults(); });
+					HostelResident::printAsTable(members);
 					break;
 				case 3:
 					cout << "Отсоритрованно по дате рождения;" << endl;
-					HostelResidents::SortByFunc(members, [](HostelResidents memberFirst, HostelResidents memberSecond) {return memberFirst.GetDate() < memberSecond.GetDate(); });
-					HostelResidents::printAsTable(members);
+					HostelResident::SortByFunc(members, [](HostelResident memberFirst, HostelResident memberSecond) {return memberFirst.GetDate() < memberSecond.GetDate(); });
+					HostelResident::printAsTable(members);
 					break;
 				case 4:
 					exitSubMenu = false;
@@ -81,23 +81,23 @@ void Menu::RunMemberMenu()
 				default:
 					cout << "Такого пункта меню - нет!" << endl;
 					break;
-				}
+				}*/
 				system("pause");
 			}
 		}
 		break;
-		case 4:
+		/*case 4:
 		{
 			cout << "Первое индивидуальное задание:" << endl << endl;
-			HostelResidents::PrintFirstThreePlaceFrommAllInstrument(members);
+			HostelResident::PrintFirstThreePlaceFrommAllInstrument(members);
 		}
 		break;
 		case 5:
 		{
 			cout << "Второе индивидуальное задание:" << endl << endl;
-			HostelResidents::PrintYougestWinner(members);
+			HostelResident::PrintYougestWinner(members);
 		}
-		break;
+		break;*/
 		case 6:
 			exitMenu = false;
 			break;
@@ -130,7 +130,7 @@ void Menu::RunAdminMenu()
 		cout << "2. Работа с файлом данных:" << endl;
 		cout << "3. Работа с данными:" << endl;
 		cout << "4. Выход" << endl;
-		int choose = GetNumber();
+		int choose = HelpFunctions::GetNumber();
 		system("cls");
 		switch (choose)
 		{
@@ -146,7 +146,7 @@ void Menu::RunAdminMenu()
 				cout << "3. Отредактировать учетную запись" << endl;
 				cout << "4. Удалить учетную запись" << endl;
 				cout << "5. Назад" << endl;
-				int SubChoose = GetNumber();
+				int SubChoose = HelpFunctions::GetNumber();
 				system("cls");
 				switch (SubChoose)
 				{
@@ -165,14 +165,14 @@ void Menu::RunAdminMenu()
 				case 3:
 				{
 					cout << "Введите порядковый номер пользователя:" << endl;
-					int number = GetNumber() - 1;
+					int number = HelpFunctions::GetNumber() - 1;
 					admin.edit_user(number);
 				}
 				break;
 				case 4:
 				{
 					cout << "Введите порядковый номер пользователя:" << endl;
-					int number = GetNumber() - 1;
+					int number = HelpFunctions::GetNumber() - 1;
 					admin.delete_user(number);
 				}
 				break;
@@ -198,7 +198,7 @@ void Menu::RunAdminMenu()
 				cout << "2. Открыть файл" << endl;
 				cout << "3. Удалить файл" << endl;
 				cout << "4. Назад" << endl;
-				int SubChoose = GetNumber();
+				int SubChoose = HelpFunctions::GetNumber();
 				system("cls");
 				switch (SubChoose)
 				{
@@ -249,7 +249,7 @@ void Menu::RunAdminMenu()
 				cout << "3. Удалить запись" << endl;
 				cout << "4. Редактировать запись" << endl;
 				cout << "5. Назад" << endl;
-				int SubChoose = GetNumber();
+				int SubChoose = HelpFunctions::GetNumber();
 				system("cls");
 				switch (SubChoose)
 				{
@@ -260,7 +260,7 @@ void Menu::RunAdminMenu()
 				break;
 				case 2:
 				{
-					HostelResidents member;
+					HostelResident member;
 					member.Input();
 					admin.append_member(member);
 				}
@@ -268,14 +268,14 @@ void Menu::RunAdminMenu()
 				case 3:
 				{
 					cout << "Введите порядковый номер записи:" << endl;
-					int number = GetNumber() - 1;
+					int number = HelpFunctions::GetNumber() - 1;
 					admin.delete_member(number);
 				}
 				break;
 				case 4:
 				{
 					cout << "Введите порядковый номер записи:" << endl;
-					int number = GetNumber() - 1;
+					int number = HelpFunctions::GetNumber() - 1;
 					admin.edit_member(number);
 				}
 				break;
@@ -312,7 +312,7 @@ void Menu::FirstMenu()
 		cout << "1. Пользователь" << endl;
 		cout << "2. Администратор" << endl;
 		cout << "3. Выход" << endl;
-		int menuChoose = GetNumber();
+		int menuChoose = HelpFunctions::GetNumber();
 		system("cls");
 		switch (menuChoose)
 		{

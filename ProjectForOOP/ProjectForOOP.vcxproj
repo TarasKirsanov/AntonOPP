@@ -142,7 +142,7 @@
     <ClCompile Include="Administrator.cpp" />
     <ClCompile Include="FileWorker.cpp" />
     <ClCompile Include="HelpFunctions.cpp" />
-    <ClCompile Include="Member.cpp" />
+    <ClCompile Include="HostelResident.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="ProjectForOOP.cpp" />
     <ClCompile Include="User.cpp" />
@@ -151,7 +151,7 @@
     <ClInclude Include="Administrator.h" />
     <ClInclude Include="FileWorker.h" />
     <ClInclude Include="HelpFunctions.h" />
-    <ClInclude Include="Member.h" />
+    <ClInclude Include="HostelResident.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="User.h" />

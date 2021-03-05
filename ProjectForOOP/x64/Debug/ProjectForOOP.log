@@ -1,0 +1,9 @@
+﻿  HelpFunctions.cpp
+C:\Users\User\Desktop\AntonOPP\ProjectForOOP\HelpFunctions.cpp(40,19): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+  HostelResident.cpp
+C:\Users\User\Desktop\AntonOPP\ProjectForOOP\HostelResident.cpp(125,134): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\User\Desktop\AntonOPP\ProjectForOOP\HostelResident.cpp(217,26): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\User\Desktop\AntonOPP\ProjectForOOP\HostelResident.cpp(219,27): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+  ProjectForOOP.cpp
+  Создание кода...
+  ProjectForOOP.vcxproj -> C:\Users\User\Desktop\AntonOPP\x64\Debug\ProjectForOOP.exe

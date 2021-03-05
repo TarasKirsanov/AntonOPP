@@ -1,8 +1,8 @@
 #include "FileWorker.h"
 
-vector<HostelResidents> FileWorker::get_members_from_file(string fileName)
+vector<HostelResident> FileWorker::get_members_from_file(string fileName)
 {
-	vector<HostelResidents> members;
+	vector<HostelResident> members;
 	ifstream file_in(fileName);
 
 	if (not is_exists(fileName) )
@@ -16,7 +16,7 @@ vector<HostelResidents> FileWorker::get_members_from_file(string fileName)
 	}
 
 
-	HostelResidents member;
+	HostelResident member;
 	while (file_in >> member && file_in.peek() != EOF)
 	{
 		members.push_back(member);
@@ -49,7 +49,7 @@ vector<User> FileWorker::GetUsersFromFile(string fileName)
 }
 
 
-void FileWorker::write_members_to_file(string fileName, vector<HostelResidents> members)
+void FileWorker::write_members_to_file(string fileName, vector<HostelResident> members)
 {
 	ofstream file_out(fileName); 
 	if (not is_exists(fileName))

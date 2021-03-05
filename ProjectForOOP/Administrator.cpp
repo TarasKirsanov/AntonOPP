@@ -54,13 +54,13 @@ void Administrator::remove_file(string fileName)
 
 void Administrator::view_members()
 {
-	HostelResidents::printAsTable(members);
+	HostelResident::printAsTable(members);
 }
 
-void Administrator::append_member(HostelResidents member)
+void Administrator::append_member(HostelResident member)
 {
 
-	HostelResidents::append(members, member);
+	HostelResident::append(members, member);
 	FileWorker::write_members_to_file(memberFileName, members);
 
 }
@@ -68,7 +68,7 @@ void Administrator::append_member(HostelResidents member)
 void Administrator::delete_member(int index)
 {
 
-	HostelResidents::remove(members, index);
+	HostelResident::remove(members, index);
 	FileWorker::write_members_to_file(memberFileName, members);
 
 
@@ -77,7 +77,7 @@ void Administrator::delete_member(int index)
 void Administrator::edit_member(int index)
 {
 
-	HostelResidents::Edit(members, index);
+	HostelResident::edit(members, index);
 	FileWorker::write_members_to_file(memberFileName, members);
 
 
