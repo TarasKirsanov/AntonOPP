@@ -13,23 +13,23 @@ class Administrator
 {
 public:
 	Administrator();
-	Administrator(string userFileName, string memberFileName);
-	void create_file(string fileName);
-	void open_file(string fileName);
-	void remove_file(string fileName);
-	void view_members();
-	void append_member(HostelResident member);
-	void delete_member(int index);
-	void edit_member(int index);
-	void AppendUser(User member);
-	void delete_user(int index);
-	void edit_user(int index);
-	void view_users();
+	Administrator(string userFileName, string residentsFileName);
+	void createFile(string fileName);
+	void openFile(string fileName);
+	void removeFile(string fileName);
+	void viewResidents();
+	void appendResidents(HostelResident member);
+	void deleteResidents(int index);
+	void editResidents(int index);
+	void appendUser(User user);
+	void deleteUser(int index);
+	void editUser(int index);
+	void viewUsers();
 private:
 	
-	vector<HostelResident> members;
+	vector<HostelResident> residents;
 	vector<User> users;
-	string memberFileName;
+	string residentsFileName;
 	string userFileName;
 };
 

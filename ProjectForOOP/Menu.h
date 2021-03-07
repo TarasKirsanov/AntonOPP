@@ -5,9 +5,9 @@ using namespace std;
 class Menu
 {
 public:
-	static void RunMemberMenu();
-	static void RunAdminMenu();
-	static void FirstMenu();
+	static void runMemberMenu();
+	static void runAdminMenu();
+	static void firstMenu();
 	
 private:
 

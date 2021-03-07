@@ -8,16 +8,16 @@
 #include "Administrator.h"
 using namespace std;
 
-void Menu::RunMemberMenu()
+void Menu::runMemberMenu()
 {
 	setlocale(0, "");
 
-	string userFileName, memberFileName;
-	cout << "Введите имя файла, где распологаються пользователи (по умолчанию members.txt), нажмите Enter для использования файла по умолчанию" << endl;
+	string userFileName, residentsFileName;
+	cout << "Введите имя файла, где распологаються пользователи (по умолчанию residents.txt), нажмите Enter для использования файла по умолчанию" << endl;
 	getline(cin, userFileName);
-	memberFileName = memberFileName.empty() ? "members.txt" : memberFileName;
+	residentsFileName = residentsFileName.empty() ? "residents.txt" : residentsFileName;
 	
-	vector<HostelResident> members = FileWorker::get_members_from_file(memberFileName);
+	vector<HostelResident> residents = FileWorker::getResidentsFromFile(residentsFileName);
 	bool exitMenu = true;
 	while (exitMenu)
 	{
@@ -28,13 +28,13 @@ void Menu::RunMemberMenu()
 		cout << "4. Первое индивидуальное задание" << endl;
 		cout << "5. Второе индивидуальное задание" << endl;
 		cout << "6. Выход" << endl;
-		int choose = HelpFunctions::GetNumber();
+		int choose = HelpFunctions::getNumber();
 		system("cls");
 		switch (choose)
 		{
 		case 1:
 		{
-			HostelResident::printAsTable(members);
+			HostelResident::printAsTable(residents);
 		}
 		break;
 		case 2:
@@ -42,7 +42,7 @@ void Menu::RunMemberMenu()
 			cout << "Введите имя для поиска: " << endl;
 			string name;
 			getline(cin, name);
-			HostelResident::FindByFIO(members, name);
+			HostelResident::findByFIO(residents, name);
 		}
 		break;
 		case 3:
@@ -53,27 +53,27 @@ void Menu::RunMemberMenu()
 				system("cls");
 				cout << "Меню пользователя:" << endl;
 				cout << "1. По имени" << endl;
-				cout << "2. По месту" << endl;
-				cout << "3. По дате рождения" << endl;
+				cout << "2. По дате заселения" << endl;
+				cout << "3. По дате выселения" << endl;
 				cout << "4. Назад" << endl;
-				int SubChoose = HelpFunctions::GetNumber();
+				int SubChoose = HelpFunctions::getNumber();
 				system("cls");
-				/*switch (SubChoose)
+				switch (SubChoose)
 				{
 				case 1:
 					cout << "Отсоритрованно по имени;" << endl;
-					HostelResident::SortByFunc(members, [](HostelResident memberFirst, HostelResident memberSecond) {return memberFirst.getFullName() < memberSecond.getFullName(); });
-					HostelResident::printAsTable(members);
+					HostelResident::SortByFunc(residents, [](HostelResident memberFirst, HostelResident memberSecond) {return memberFirst.getFullName() < memberSecond.getFullName(); });
+					HostelResident::printAsTable(residents);
 					break;
 				case 2:
-					cout << "Отсоритрованно по месту;" << endl;
-					HostelResident::SortByFunc(members, [](HostelResident memberFirst, HostelResident memberSecond) {return memberFirst.GetPlaceByResults() < memberSecond.GetPlaceByResults(); });
-					HostelResident::printAsTable(members);
+					cout << "Отсоритрованно по дате заселения;" << endl;
+					HostelResident::SortByFunc(residents, [](HostelResident hostelResidentFirst, HostelResident hostelResidentsecond) {return hostelResidentFirst.getSettlementYear() < hostelResidentsecond.getSettlementYear(); });
+					HostelResident::printAsTable(residents);
 					break;
 				case 3:
-					cout << "Отсоритрованно по дате рождения;" << endl;
-					HostelResident::SortByFunc(members, [](HostelResident memberFirst, HostelResident memberSecond) {return memberFirst.GetDate() < memberSecond.GetDate(); });
-					HostelResident::printAsTable(members);
+					cout << "Отсоритрованно по дате выселения;" << endl;
+					HostelResident::SortByFunc(residents, [](HostelResident hostelResidentFirst, HostelResident hostelResidentsecond) {return hostelResidentFirst.getFullName() < hostelResidentsecond.getFullName(); });
+					HostelResident::printAsTable(residents);
 					break;
 				case 4:
 					exitSubMenu = false;
@@ -81,23 +81,25 @@ void Menu::RunMemberMenu()
 				default:
 					cout << "Такого пункта меню - нет!" << endl;
 					break;
-				}*/
+				}
 				system("pause");
 			}
 		}
 		break;
-		/*case 4:
+		case 4:
 		{
+			cout << "Введите год:" << endl;
+			int year = HelpFunctions::getNumber();
 			cout << "Первое индивидуальное задание:" << endl << endl;
-			HostelResident::PrintFirstThreePlaceFrommAllInstrument(members);
+			HostelResident::sortByFIOAfterYear(residents, year);
 		}
 		break;
 		case 5:
 		{
 			cout << "Второе индивидуальное задание:" << endl << endl;
-			HostelResident::PrintYougestWinner(members);
+			HostelResident::whoLiveNow(residents);
 		}
-		break;*/
+		break;
 		case 6:
 			exitMenu = false;
 			break;
@@ -110,18 +112,18 @@ void Menu::RunMemberMenu()
 	}
 }
 
-void Menu::RunAdminMenu()
+void Menu::runAdminMenu()
 {
 	setlocale(0, "");
-	string userFileName, memberFileName;
+	string userFileName, residentsFileName;
 	cout << "Введите имя файла, где распологаються пользователи (по умолчанию users.txt), нажмите Enter для использования файла по умолчанию" << endl;
 	getline(cin, userFileName);
 	userFileName = userFileName.empty() ? "users.txt" : userFileName;
-	cout << "Введите имя файла, где распологаються участники (по умолчанию members.txt), нажмите Enter для использования файла по умолчанию" << endl;
-	getline(cin, memberFileName);
-	memberFileName = memberFileName.empty() ? "members.txt" : memberFileName;
+	cout << "Введите имя файла, где распологаються участники (по умолчанию residents.txt), нажмите Enter для использования файла по умолчанию" << endl;
+	getline(cin, residentsFileName);
+	residentsFileName = residentsFileName.empty() ? "members.txt" : residentsFileName;
 
-	Administrator admin(userFileName, memberFileName);
+	Administrator admin(userFileName, residentsFileName);
 	bool exitMenu = true;
 	while (exitMenu)
 	{
@@ -130,7 +132,7 @@ void Menu::RunAdminMenu()
 		cout << "2. Работа с файлом данных:" << endl;
 		cout << "3. Работа с данными:" << endl;
 		cout << "4. Выход" << endl;
-		int choose = HelpFunctions::GetNumber();
+		int choose = HelpFunctions::getNumber();
 		system("cls");
 		switch (choose)
 		{
@@ -146,34 +148,34 @@ void Menu::RunAdminMenu()
 				cout << "3. Отредактировать учетную запись" << endl;
 				cout << "4. Удалить учетную запись" << endl;
 				cout << "5. Назад" << endl;
-				int SubChoose = HelpFunctions::GetNumber();
+				int SubChoose = HelpFunctions::getNumber();
 				system("cls");
 				switch (SubChoose)
 				{
 				case 1:
 				{
-					admin.view_users();
+					admin.viewUsers();
 				}
 				break;
 				case 2:
 				{
 					User user;
-					user.Input();
-					admin.AppendUser(user);
+					user.input();
+					admin.appendUser(user);
 				}
 				break;
 				case 3:
 				{
 					cout << "Введите порядковый номер пользователя:" << endl;
-					int number = HelpFunctions::GetNumber() - 1;
-					admin.edit_user(number);
+					int number = HelpFunctions::getNumber() - 1;
+					admin.editUser(number);
 				}
 				break;
 				case 4:
 				{
 					cout << "Введите порядковый номер пользователя:" << endl;
-					int number = HelpFunctions::GetNumber() - 1;
-					admin.delete_user(number);
+					int number = HelpFunctions::getNumber() - 1;
+					admin.deleteUser(number);
 				}
 				break;
 				case 5:
@@ -198,7 +200,7 @@ void Menu::RunAdminMenu()
 				cout << "2. Открыть файл" << endl;
 				cout << "3. Удалить файл" << endl;
 				cout << "4. Назад" << endl;
-				int SubChoose = HelpFunctions::GetNumber();
+				int SubChoose = HelpFunctions::getNumber();
 				system("cls");
 				switch (SubChoose)
 				{
@@ -207,7 +209,7 @@ void Menu::RunAdminMenu()
 					cout << "Введите имя файла:" << endl;
 					string fileName;
 					getline(cin, fileName);
-					admin.create_file(fileName);
+					admin.createFile(fileName);
 				}
 				break;
 				case 2:
@@ -215,7 +217,7 @@ void Menu::RunAdminMenu()
 					cout << "Введите имя файла:" << endl;
 					string fileName;
 					getline(cin, fileName);
-					admin.open_file(fileName);
+					admin.openFile(fileName);
 				}
 				break;
 				case 3:
@@ -223,7 +225,7 @@ void Menu::RunAdminMenu()
 					cout << "Введите имя файла:" << endl;
 					string fileName;
 					getline(cin, fileName);
-					admin.remove_file(fileName);
+					admin.removeFile(fileName);
 				}
 				break;
 				case 4:
@@ -249,34 +251,34 @@ void Menu::RunAdminMenu()
 				cout << "3. Удалить запись" << endl;
 				cout << "4. Редактировать запись" << endl;
 				cout << "5. Назад" << endl;
-				int SubChoose = HelpFunctions::GetNumber();
+				int SubChoose = HelpFunctions::getNumber();
 				system("cls");
 				switch (SubChoose)
 				{
 				case 1:
 				{
-					admin.view_members();
+					admin.viewResidents();
 				}
 				break;
 				case 2:
 				{
-					HostelResident member;
-					member.Input();
-					admin.append_member(member);
+					HostelResident resident;
+					resident.Input();
+					admin.appendResidents(resident);
 				}
 				break;
 				case 3:
 				{
 					cout << "Введите порядковый номер записи:" << endl;
-					int number = HelpFunctions::GetNumber() - 1;
-					admin.delete_member(number);
+					int number = HelpFunctions::getNumber() - 1;
+					admin.deleteResidents(number);
 				}
 				break;
 				case 4:
 				{
 					cout << "Введите порядковый номер записи:" << endl;
-					int number = HelpFunctions::GetNumber() - 1;
-					admin.edit_member(number);
+					int number = HelpFunctions::getNumber() - 1;
+					admin.editResidents(number);
 				}
 				break;
 				case 5:
@@ -302,7 +304,7 @@ void Menu::RunAdminMenu()
 	}
 }
 
-void Menu::FirstMenu()
+void Menu::firstMenu()
 {
 	setlocale(0, "");
 	bool exitMenu = true;
@@ -312,15 +314,15 @@ void Menu::FirstMenu()
 		cout << "1. Пользователь" << endl;
 		cout << "2. Администратор" << endl;
 		cout << "3. Выход" << endl;
-		int menuChoose = HelpFunctions::GetNumber();
+		int menuChoose = HelpFunctions::getNumber();
 		system("cls");
 		switch (menuChoose)
 		{
 		case 1:
-			RunMemberMenu();
+			runMemberMenu();
 			break;
 		case 2:
-			RunAdminMenu();
+			runAdminMenu();
 			break;
 		case 3:
 			exitMenu = false;

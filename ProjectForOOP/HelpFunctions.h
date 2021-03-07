@@ -7,7 +7,7 @@ class HelpFunctions
 {
 public:
 
-	static int GetNumber();
+	static int getNumber();
 	static bool isNumber(string s);
 	static int lenghtOf(int n);
 	static int lenghtOf(string s);

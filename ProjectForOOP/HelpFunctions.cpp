@@ -1,5 +1,5 @@
 #include "HelpFunctions.h"
-int HelpFunctions::GetNumber()
+int HelpFunctions::getNumber()
 {
 	string num;
 	int k;

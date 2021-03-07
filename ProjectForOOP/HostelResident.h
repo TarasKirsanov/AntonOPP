@@ -15,7 +15,7 @@ class HostelResident
 public:
 	HostelResident();
 	~HostelResident();
-	HostelResident(string full_name, int settlement_year, int room, string feedback,int entertainment_year, string eviction_reason, string residence_mark);
+	HostelResident(string fullName, int settlementYear, int room, string feedback,int entertainmentYear, string evictionReason, string residenceMark);
 	string getFullName();
 	int getSettlementYear();
 	int getRoom();
@@ -30,20 +30,21 @@ public:
 	static void edit(vector<HostelResident>& hostelResidents, int index);
 	static void printAsTable(vector<HostelResident>& hostelResidents);
 	static void printAsTable(vector<HostelResident>& hostelResidents, string verticalDelemitr, char gorizontalDelemitr);
-	static void sortByYearAfterYear(vector<HostelResident>& hostelResidents, int year);
+	static void sortByFIOAfterYear(vector<HostelResident>& hostelResidents, int year);
+	static void whoLiveNow(vector<HostelResident>& hostelResidents);
 	static void SortByFunc(vector<HostelResident>& hostelResidents, bool (*comp)(HostelResident,HostelResident));
-	static void FindByFIO(vector<HostelResident>& hostelResidents , string NameToFind);
-	static bool FindSubstring(string mainString, string subString);
+	static void findByFIO(vector<HostelResident>& hostelResidents , string NameToFind);
+	static bool findSubstring(string mainString, string subString);
 	
 	friend ostream& operator<<(ostream& out, const HostelResident& member);
 	friend istream& operator>>(istream& in, HostelResident& member);
 private:
-	string full_name;
-	int settlement_year;
+	string fullName;
+	int settlementYear;
 	int room;
 	string feedback;
-	int entertainment_year;
-	string eviction_reason;
-	string residence_mark;
+	int entertainmentYear;
+	string evictionReason;
+	string residenceMark;
 };
 

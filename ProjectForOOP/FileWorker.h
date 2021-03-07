@@ -7,11 +7,11 @@ class FileWorker
 {
 public:
 	//static vector<Member> GetMembersFromFile(ifstream& file_in);
-	static vector<HostelResident> get_members_from_file(string fileName);
-	static vector<User> GetUsersFromFile(string fileName);
-	static void write_members_to_file(string fileName, vector<HostelResident> members);
-	static void WriteUsersToFile(string fileName, vector<User> users);
-	static bool is_exists(string fileName);
+	static vector<HostelResident> getResidentsFromFile(string fileName);
+	static vector<User> getUsersFromFile(string fileName);
+	static void writeResidentsToFile(string fileName, vector<HostelResident> members);
+	static void writeUsersToFile(string fileName, vector<User> users);
+	static bool isExists(string fileName);
 private:
 	FileWorker() {}
 	

@@ -1,11 +1,11 @@
 #include "FileWorker.h"
 
-vector<HostelResident> FileWorker::get_members_from_file(string fileName)
+vector<HostelResident> FileWorker::getResidentsFromFile(string fileName)
 {
 	vector<HostelResident> members;
 	ifstream file_in(fileName);
 
-	if (not is_exists(fileName) )
+	if (not isExists(fileName) )
 	{
 		cout << "Такого файла не существует";
 		return members;
@@ -24,11 +24,11 @@ vector<HostelResident> FileWorker::get_members_from_file(string fileName)
 	return members;
 }
 
-vector<User> FileWorker::GetUsersFromFile(string fileName)
+vector<User> FileWorker::getUsersFromFile(string fileName)
 {
 	vector<User> users;
 	ifstream file_in(fileName);
-	if (not is_exists(fileName))
+	if (not isExists(fileName))
 	{
 		cout << "Такого файла не существует";
 		return users;
@@ -49,10 +49,10 @@ vector<User> FileWorker::GetUsersFromFile(string fileName)
 }
 
 
-void FileWorker::write_members_to_file(string fileName, vector<HostelResident> members)
+void FileWorker::writeResidentsToFile(string fileName, vector<HostelResident> members)
 {
 	ofstream file_out(fileName); 
-	if (not is_exists(fileName))
+	if (not isExists(fileName))
 	{
 		cout << "Такого файла не существует";
 	}
@@ -73,11 +73,11 @@ void FileWorker::write_members_to_file(string fileName, vector<HostelResident> m
 
 }
 
-void FileWorker::WriteUsersToFile(string fileName, vector<User> users)
+void FileWorker::writeUsersToFile(string fileName, vector<User> users)
 {
 	ofstream file_out(fileName);
 
-	if (not is_exists(fileName))
+	if (not isExists(fileName))
 	{
 		cout << "Такого файла не существует";
 	}
@@ -95,7 +95,7 @@ void FileWorker::WriteUsersToFile(string fileName, vector<User> users)
 	file_out.close();
 }
 
-bool FileWorker::is_exists(string fileName)
+bool FileWorker::isExists(string fileName)
 {
 	ifstream fin(fileName);
 	bool isExists = fin.is_open();
